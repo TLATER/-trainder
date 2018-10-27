@@ -235,11 +235,18 @@ body {
   
 .message {
   position: relative;
+  padding: 5px;
+  border-bottom: #EEE solid 1px;
 }
 
 .username {
   color: #3F51B5;
   font-weight: bold;
+  padding: 2px;
+}
+
+.messageText {
+  padding: 6px;
 }
 
 .inputBox {
