@@ -18,6 +18,7 @@
   box-sizing: border-box; }
 
 html, body {
+  align-items: space-between;
   padding: 0;
   margin: 0;
   height: 100%;
@@ -33,6 +34,7 @@ html {
   overflow: hidden; }
 
 body {
+  display: flex;
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -60,10 +62,9 @@ body {
 
 .header {
   width: 100%;
-  height: 56px;
+  flex-grow: 0.1;
   color: #FFF;
   background: #3F51B5;
-  position: fixed;
   font-size: 20px;
   box-shadow: 0 4px 5px 0 rgba(0, 0, 0, 0.14), 0 2px 9px 1px rgba(0, 0, 0, 0.12), 0 4px 2px -2px rgba(0, 0, 0, 0.2);
   padding: 16px 16px 0 16px;
@@ -163,7 +164,10 @@ body {
             transform: rotate(90deg); } }
 
 .main {
-  padding-top: 60px;
+  flex-grow: 0.9;
+  display: flex;
+  align-items: stretch;
+  flex-direction: column;
   -webkit-box-flex: 1;
   -webkit-flex: 1;
       -ms-flex: 1;
@@ -224,13 +228,15 @@ body {
   float: right; }
 
 .chat {
-  height: 100%;
+  overflow-x: hidden;
+  overflow-y: scroll;
+  flex-grow: 0.9;
   padding: 16px;
   position: relative;
   box-sizing: border-box;
   background: #fff;
   border-radius: 2px;
-  margin: 16px;
+  margin: 16px 16px 0px 16px;
   box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 3px 1px -2px rgba(0, 0, 0, 0.2), 0 1px 5px 0 rgba(0, 0, 0, 0.12); }
   
 .message {
@@ -250,13 +256,23 @@ body {
 }
 
 .inputBox {
-  padding: 16px;
-  position: relative;
-  box-sizing: border-box;
+  display: flex;
+  align-content: stretch;
+  align-items: stretch;
+  flex-grow: 0.1;
+  justify-content: center;
   background: #fff;
   border-radius: 2px;
   margin: 16px;
   box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 3px 1px -2px rgba(0, 0, 0, 0.2), 0 1px 5px 0 rgba(0, 0, 0, 0.12); }
+
+.inputMessage {
+  flex-grow: 0.9;
+}
+
+#btnSendMessage {
+  flex-grow: 0.1;
+}
 
 .weather-forecast .location {
   font-size: 1.75em; }

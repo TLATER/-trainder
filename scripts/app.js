@@ -63,12 +63,14 @@
   };
 
   app.sendMessage = function(data) {
-    var message = app.messageTemplate.cloneNode(true);
-    message.classList.remove('messageTemplate');
-    message.removeAttribute('hidden');
-    message.querySelector('.username').textContent = data.username;
-    message.querySelector('.messageText').textContent = data.messageText;
-    app.chat.appendChild(message);
+    if (data.messageText != "") {
+      var message = app.messageTemplate.cloneNode(true);
+      message.classList.remove('messageTemplate');
+      message.removeAttribute('hidden');
+      message.querySelector('.username').textContent = data.username;
+      message.querySelector('.messageText').textContent = data.messageText;
+      app.chat.appendChild(message);
+      }
   }
 
   // Display the message received
