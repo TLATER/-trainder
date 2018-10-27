@@ -239,7 +239,11 @@ body {
   
 .message {
   position: relative;
+}
 
+.username {
+  color: #3F51B5;
+  font-weight: bold;
 }
 
 .inputBox {

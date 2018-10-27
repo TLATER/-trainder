@@ -20,7 +20,9 @@
     visibleCards: {},
     selectedCities: [],
     cardTemplate: document.querySelector('.cardTemplate'),
+    messageTemplate: document.querySelector('.messageTemplate'),
     container: document.querySelector('.main'),
+    chat: document.querySelector(".chat"),
     addDialog: document.querySelector('.dialog-container'),
     daysOfWeek: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun']
   };
@@ -31,7 +33,7 @@
    * Event listeners for UI elements
    *
    ****************************************************************************/
-
+/*
   document.getElementById('butRefresh').addEventListener('click', function() {
     // Refresh all of the forecasts
     app.updateForecasts();
@@ -58,7 +60,7 @@
     // Close the add new city dialog
     app.toggleAddDialog(false);
   });
-
+*/
 
   /*****************************************************************************
    *
@@ -74,6 +76,15 @@
       app.addDialog.classList.remove('dialog-container--visible');
     }
   };
+
+  app.sendMessage = function(username, messageText) {
+    var message = app.messageTemplate.cloneNode(true);
+    message.classList.remove('messageTemplate');
+    message.removeAttribute('hidden');
+    message.querySelector('.username').textContent = username;
+    message.querySelector('.messageText').textContent = messageText;
+    app.chat.appendChild(message);
+  }
 
   // Updates a weather card with the latest weather forecast. If the card
   // doesn't already exist, it's cloned from the template.
@@ -297,7 +308,7 @@
   };
 
   //app.updateForecastCard(initialWeatherForecast);
-
+  app.sendMessage("Marie", "Wassup dork?");
   // TODO add startup code here
 
   // TODO add service worker code here
