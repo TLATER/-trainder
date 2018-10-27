@@ -24,20 +24,20 @@
 
 
 	app.displayUser = function(data) {
-		console.log("Setting name " + data.name);
+		console.log("Setting username " + data.username);
 		var user = app.userTemplate.cloneNode(true);
 		user.classList.remove('userTemplate');
 		user.removeAttribute('hidden');
-		user.querySelector('.name').textContent = data.name;
+		user.querySelector('.username').textContent = data.username;
 		app.userList.appendChild(user);
 		console.log("appended " + user);
 	}
 
 	var user1 = {
-		name: "Brucie"
+		username: "Brucie"
 	}
 	var user2 = {
-		name: "Gazzo"
+		username: "Gazzo"
 	}
 	
 	app.displayUser(user1);
