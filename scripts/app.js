@@ -33,34 +33,19 @@
    * Event listeners for UI elements
    *
    ****************************************************************************/
-/*
-  document.getElementById('butRefresh').addEventListener('click', function() {
-    // Refresh all of the forecasts
-    app.updateForecasts();
-  });
 
-  document.getElementById('butAdd').addEventListener('click', function() {
-    // Open/show the add new city dialog
-    app.toggleAddDialog(true);
-  });
+  document.getElementById('btnSendMessage').addEventListener('click', function() {
+    var typedMessage = document.getElementById('inputMessage').value;
+    var messageJSON = {
+      username: "Loz\'n",
+      messageText: typedMessage
+    };
 
-  document.getElementById('butAddCity').addEventListener('click', function() {
-    // Add the newly selected city
-    var select = document.getElementById('selectCityToAdd');
-    var selected = select.options[select.selectedIndex];
-    var key = selected.value;
-    var label = selected.textContent;
-    // TODO init the app.selectedCities array here
-    app.getForecast(key, label);
-    // TODO push the selected city to the array and save here
-    app.toggleAddDialog(false);
-  });
+    app.sendMessage(messageJSON);
 
-  document.getElementById('butAddCancel').addEventListener('click', function() {
-    // Close the add new city dialog
-    app.toggleAddDialog(false);
+    document.getElementById('inputMessage').value = "";
+
   });
-*/
 
   /*****************************************************************************
    *
@@ -204,5 +189,4 @@
 
   app.sendMessage(message1);
   app.sendMessage(message2);
-
 })();
