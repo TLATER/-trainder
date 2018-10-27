@@ -71,6 +71,26 @@
     app.chat.appendChild(message);
   }
 
+  // Display the message received
+  app.displayMessage = function(data) {
+    var message = app.messageTemplate.cloneNode(true);
+    message.classList.remove('messageTemplate');
+    message.removeAttribute('hidden');
+
+    if (data.content.msgtype == "m.text") {
+      message.querySelector('.username').textContent = data.sender;
+      message.querySelector('.messageText').textContent = data.content.body;
+      app.chat.appendChild(message);
+    } else if (data.content.msgtype == "m.image") {
+      // Deal with this like an image
+      message.querySelector('.username').textContent = data.sender;
+      //message.querySelector('.messageText').textContent = data.content.body;
+      app.chat.appendChild(message);
+    } else {
+      console.log("Don't know how to display data type " + data.content.msgtype);
+    }
+  }
+
   // Updates a weather card with the latest weather forecast. If the card
   // doesn't already exist, it's cloned from the template.
   app.updateForecastCard = function(data) {
@@ -189,4 +209,14 @@
 
   app.sendMessage(message1);
   app.sendMessage(message2);
-})();
+}
+
+)();
+
+function pollForMessages(){
+  $.post('ajax/test.html', function(data) {
+    // If new message, send it
+    displayMessage(data);
+    setTimeout(pollForMessages,5000);
+  });
+}
