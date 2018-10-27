@@ -35,10 +35,25 @@
    ****************************************************************************/
 
   document.getElementById('btnEnterDetails').addEventListener('click', function() {
-    
+		var from = document.getElementById("inputFrom").value;
+		var to = document.getElementById("inputTo").value;
+    if (from != "" && to != "") {
+			var train = getTrain(from, to); //todo: add the time
+			console.log("Sending the info " + document.getElementById("inputFrom").value + " and to.");
+			window.open("index.html?train=" + train, "_self");
+    } else {
+			console.log("Please enter valid from and to locations.")
+		}
+	});
 
-  });
+	function getTrain(from, to) {
+		var time = new Date()
+		time.getTime();
 
+		//Todo: use API to find which train you're on
+		return 1;
+	}
 }
+
 
 )();
