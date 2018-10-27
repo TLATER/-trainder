@@ -309,6 +309,7 @@
 
   //app.updateForecastCard(initialWeatherForecast);
   app.sendMessage("Marie", "Wassup dork?");
+  app.sendMessage("Carry", "Your face");
   // TODO add startup code here
 
   // TODO add service worker code here
