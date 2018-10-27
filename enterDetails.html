@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Trainder</title>
+  <link rel="stylesheet" type="text/css" href="styles/inline.css">
+  <link rel="manifest" href="/manifest.webmanifest">
+</head>
+<body>
+
+	<header class="header">
+			<h1 class="header__title">Trainder</h1>
+			<button id="butRefresh" class="headerButton" aria-label="Refresh"></button>
+			<button id="butAdd" class="headerButton" aria-label="Add"></button>
+	</header>
+
+  <main class="main">
+		<div class="inputForm">
+			<div class="nameInput">
+				From: <input class="detailsInputMessage" id="inputMessage">
+			</div>
+			<div class="nameInput">
+				To: <input class="detailsInputMessage" id="inputMessage">
+			</div>
+			<div id="btnEnterDetails" class="mdl-button">Send</div>
+		</div>
+  </main>
+
+  <script src="scripts/enterDetails.js" async></script>
+
+</body>
+</html>
