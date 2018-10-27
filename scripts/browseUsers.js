@@ -12,6 +12,7 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
+var id = 1;
 
 (function() {
   'use strict';
@@ -28,6 +29,7 @@
 		var user = app.userTemplate.cloneNode(true);
 		user.classList.remove('userTemplate');
 		user.removeAttribute('hidden');
+		user.querySelector('.id').textContent = id++;
 		user.querySelector('.username').textContent = data.username;
 		app.userList.appendChild(user);
 		console.log("appended " + user);
