@@ -21,6 +21,7 @@ const SERVER = "http://192.168.219.80:5000/";
   var app = {
     inputForm: document.querySelector('.inputForm'),
     userList: document.querySelector('.userList'),
+    usersHeader: document.querySelector(".usersHeader"),
     chat: document.querySelector(".chat")
   };
 
@@ -72,6 +73,7 @@ const SERVER = "http://192.168.219.80:5000/";
 
           app.inputForm.style.display = "none"; // remove first form
           app.userList.style.display = "block"; // show online users
+          app.usersHeader.textContent = "Other users on train " + train; // Display the train you're on
 
           // Pass on our user data
           for (let user of data.users) {
