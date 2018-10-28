@@ -86,10 +86,10 @@ def send(room_id, kind, phone):
         return flask.jsonify({"error": f"User '{phone}' does not exist"})
 
     if phone not in (room.user_a.phone, room.user_b.phone):
-        flask.current_app.logger.error(phone, room.user_a.phone, room.user_b.phone)
+        flask.current_app.logger.error(phone, room.user_a.name, room.user_a.phone, room.user_b.name, room.user_b.phone)
         return flask.jsonify({"error": f"User not in this room"})
 
-    event = Event(content=json, kind=kind, sender=user.phone,
+    event = Event(content=json, kind=kind, sender=user.id,
                   room=room_id)
     event.save()
 

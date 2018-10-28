@@ -13,7 +13,7 @@
 // limitations under the License.
 
 
-const SERVER = "http://127.0.0.1:5000/";
+const SERVER = "http://192.168.219.80:5000/";
 
 (function() {
   'use strict';
