@@ -252,6 +252,7 @@ body {
 .nameInput {
   display:flex;
   padding: 16px;
+  justify-content: center;
 }
 
 .chat {
@@ -331,7 +332,7 @@ body {
 }
 
 .detailsInputMessage {
-  flex-grow: 0.6;
+  margin-left: 10px;
 }
 
 #btnSendMessage {
