@@ -75,6 +75,7 @@ const SERVER = "http://192.168.219.80:5000/";
 
           // Pass on our user data
           for (let user of data.users) {
+            if (user[1] !== document._userData.phone)
             app.userList.displayUser(user[0], user[1]);
           }
         }
@@ -89,8 +90,6 @@ const SERVER = "http://192.168.219.80:5000/";
 		//Todo: use API to find which train you're on
 		return 1;
 	}
-
-
 }
 
 

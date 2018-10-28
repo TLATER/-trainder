@@ -30,7 +30,8 @@ def accept(room_id, phone):
         return flask.jsonify({"error": f"User '{phone}' does not exist"})
 
     try:
-        invitation = Room.select().where(Room.id == room_id).get()
+        invitation = (Room.select().join(User, on=(Room.user_b, User.id))
+                      .where(Room.user_b != user.id).get())
     except Room.DoesNotExist:
         return flask.jsonify({"error": f"Room '{room_id}' does not exist"})
 
@@ -90,7 +91,7 @@ def send(room_id, kind, phone):
         return flask.jsonify({"error": f"User not in this room"})
 
     event = Event(content=json, kind=kind, sender=user.id,
-                  room=room_id)
+                  room=room.id)
     event.save()
 
     return flask.jsonify("success")
@@ -98,12 +99,21 @@ def send(room_id, kind, phone):
 
 @rooms.route('/<int:room_id>/sync/<int:last_message>', methods=['GET'])
 def sync(room_id, last_message):
+    flask.current_app.logger.error(room_id)
+    flask.current_app.logger.error(last_message)
+    flask.current_app.logger.error([e for e in Event.select().dicts()])
+
+    try:
+        room = Room.select().where(Room.id == room_id)
+    except Room.DoesNotExist:
+        return flask.jsonify({"error": f"Room '{room_id}' does not exist"})
+
     try:
         events = (Event.select()
-                  .join(Room)
-                  .where(Room.id == room_id and Event.id > last_message)
+                  .where(Event.room == room_id)
                   .dicts())
     except Room.DoesNotExist:
         return flask.jsonify({"error": f"Room '{room_id}' does not exist"})
 
-    return flask.jsonify({"events": [event for event in events]})
+    return flask.jsonify({"events": [event for event in events if
+                                     int(event["id"]) > int(last_message)]})

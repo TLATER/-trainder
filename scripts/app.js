@@ -80,6 +80,7 @@ document.lastMessage = null;
   };
 
   function parseContent(content) {
+    console.log(content.replace(/'/g, '"'));
     return JSON.parse(content.replace(/'/g, '"'));
   }
 
