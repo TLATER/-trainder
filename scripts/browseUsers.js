@@ -20,7 +20,9 @@ var id = 1;
   var app = {
     userTemplate: document.querySelector('.userTemplate'),
     container: document.querySelector('.main'),
-    userList: document.querySelector(".userList")
+		userList: document.querySelector(".userList"),
+		chat: document.querySelector(".chat"),
+		inputBox: document.querySelector(".inputBox")
   };
 
 
@@ -30,19 +32,23 @@ var id = 1;
    *
    ****************************************************************************/
 
-	document.getElementById('user').addEventListener('click', function() {
-		console.log("Clicked a user");
-		var userID = this.querySelector("id");
-		console.log("Requesting to talk to user " + userID);
-		window.open("index.html?id=", userID);
-	});
-
 	app.displayUser = function(data) {
 		var user = app.userTemplate.cloneNode(true);
 		user.classList.remove('userTemplate');
 		user.removeAttribute('hidden');
 		user.querySelector('.id').textContent = id++;
 		user.querySelector('.username').textContent = data.username;
+		user.addEventListener("click", function() {
+			console.log("Clicked a user");
+			var userID = this.querySelector("id");
+			console.log("Requesting to talk to user " + userID);
+	
+			// Display the chat window for this user
+			app.userList.style.display = "none";	// remove users
+			app.chat.style.display = "block";			// show chat
+			app.inputBox.style.display = "flex"; // show input
+	
+		});
 		app.userList.appendChild(user);
 	}
 

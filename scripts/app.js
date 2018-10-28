@@ -34,7 +34,7 @@
    *
    ****************************************************************************/
 
-  document.getElementById('btnSendMessage').addEventListener('click', function() {
+  document.getElementById('btnSendMessage').addEventListener('click', function() {    
     var typedMessage = document.getElementById('inputMessage').value;
     var messageJSON = {
       username: "Loz\'n",
@@ -52,15 +52,6 @@
    * Methods to update/refresh the UI
    *
    ****************************************************************************/
-
-  // Toggles the visibility of the add new city dialog.
-  app.toggleAddDialog = function(visible) {
-    if (visible) {
-      app.addDialog.classList.add('dialog-container--visible');
-    } else {
-      app.addDialog.classList.remove('dialog-container--visible');
-    }
-  };
 
   app.sendMessage = function(data) {
     if (data.messageText != "") {
@@ -100,18 +91,6 @@
    *
    ****************************************************************************/
 
-  var message1 = {
-    username: 'Marie',
-    messageText: 'Why are pirates called pirates?'
-  };
-
-  var message2 = {
-    username: 'Sharie',
-    messageText: 'Because THEY ARRRRRRR'
-  };
-
-  app.sendMessage(message1);
-  app.sendMessage(message2);
 }
 
 )();

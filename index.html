@@ -20,30 +20,50 @@
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Trainder</title>
+  <title>Commeetr</title>
   <link rel="stylesheet" type="text/css" href="styles/inline.css">
   <link rel="manifest" href="/manifest.webmanifest">
+  <script src="scripts/app.js" async></script>
+  <script src="scripts/browseUsers.js" async></script>
 </head>
 <body>
 
   <header class="header">
-    <h1 class="header__title">Trainder</h1>
+    <h1 class="header__title">Commeetr</h1>
   </header>
 
   <main class="main">
-    <div class="chat">
-      <div class="message messageTemplate" hidden>
+    <div class="userList">
+      <div id="user" class="user userTemplate" hidden>
+        <div class="id" hidden></div>
         <div class="username"></div>
-        <div class="messageText"></div>
+        <div class="lastMessage">...last message...</div>
       </div>
     </div>
-    <div class="inputBox">
+
+
+    <div class="chat" style="display:none">
+        <div class="message messageTemplate" hidden>
+          <div class="username"></div>
+          <div class="messageText"></div>
+        </div>
+        <!-- Example messages, just for show. Remove when it works -->
+        <div class="message">
+          <div class="username">Betty</div>
+          <div class="messageText">What do you call a dino with no ears?</div>
+        </div>
+        <div class="message">
+          <div class="username">Me</div>
+          <div class="messageText">Anything you want he can't hear you!</div>
+        </div>
+        <!-- Example messages, just for show. Remove when it works -->
+    </div>
+    <div class="inputBox" style="display:none">
       <input class="inputMessage" id="inputMessage">
       <div id="btnSendMessage" class="mdl-button">Send</div>
     </div>
   </main>
 
-  <script src="scripts/app.js" async></script>
 
 </body>
 </html>
