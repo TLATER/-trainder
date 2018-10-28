@@ -56,12 +56,13 @@ def invite(other, phone):
     room = None
     try:
         room = (Room.select()
-                .where(Room.user_a == user.id and Room.user_b == invited.id or
-                       Room.user_b == user.id and Room.user_a == invited.id)
-                .get())
+                .where((Room.user_a == user.id) & (Room.user_b == invited.id) |
+                (Room.user_b == user.id) & (Room.user_a == invited.id)).get())
     except Room.DoesNotExist:
         room = Room(user_a=user.id, user_b=invited.id)
         room.save()
+
+        flask.current_app.logger.error(f"{user.id} {invited.id} {room.id}")
 
     return flask.jsonify({"room_id": room.id})
 
@@ -101,6 +102,7 @@ def send(room_id, kind, phone):
 def sync(room_id, last_message):
     flask.current_app.logger.error(room_id)
     flask.current_app.logger.error(last_message)
+    flask.current_app.logger.error([r for r in Room.select().dicts()])
     flask.current_app.logger.error([e for e in Event.select().dicts()])
 
     try:
