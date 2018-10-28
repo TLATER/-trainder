@@ -19,14 +19,9 @@ document.lastMessage = null;
   'use strict';
 
   var app = {
-    visibleCards: {},
-    selectedCities: [],
-    cardTemplate: document.querySelector('.cardTemplate'),
     messageTemplate: document.querySelector('.messageTemplate'),
     container: document.querySelector('.main'),
-    chat: document.querySelector(".chat"),
-    addDialog: document.querySelector('.dialog-container'),
-    daysOfWeek: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun']
+    chat: document.querySelector(".chat")
   };
 
 
@@ -35,6 +30,13 @@ document.lastMessage = null;
    * Event listeners for UI elements
    *
    ****************************************************************************/
+
+  document.getElementById('btnSendPhoto').addEventListener('click', function() {
+    if (this.hasAttribute("disabled"))
+      console.log("x more journeys until you can reveal your identity");
+    else 
+      console.log("Send a photo");
+  });
 
   document.getElementById('btnSendMessage').addEventListener('click', function() {
     var typedMessage = document.getElementById('inputMessage').value;

@@ -335,121 +335,23 @@ body {
 }
 
 #btnSendMessage {
+  margin:  0px 5px 0px 5px;
   flex-grow: 0.1;
 }
 
 #btnSendPhoto {
+  margin:  0px 0px 0px 5px;
   flex-grow: 0.1;
   background-image: url(../icons/baseline_photo_camera_white_18dp.png);
   background-repeat: no-repeat;
   background-position: center;
 }
 
-.weather-forecast .location {
-  font-size: 1.75em; }
-
-.weather-forecast .date, .weather-forecast .description {
-  font-size: 1.25em; }
-
-.weather-forecast .current {
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex; }
-  .weather-forecast .current .icon {
-    width: 128px;
-    height: 128px; }
-  .weather-forecast .current .visual {
-    display: -webkit-box;
-    display: -webkit-flex;
-    display: -ms-flexbox;
-    display: flex;
-    font-size: 4em; }
-    .weather-forecast .current .visual .scale {
-      font-size: 0.5em;
-      vertical-align: super; }
-  .weather-forecast .current .visual, .weather-forecast .current .description {
-    -webkit-box-flex: 1;
-    -webkit-flex-grow: 1;
-        -ms-flex-positive: 1;
-            flex-grow: 1; }
-  .weather-forecast .current .sunset:before {
-    content: "Sunset: ";
-    color: #888; }
-  .weather-forecast .current .wind:before {
-    content: "Wind: ";
-    color: #888; }
-  .weather-forecast .current .sunrise:before {
-    content: "Sunrise: ";
-    color: #888; }
-  .weather-forecast .current .humidity:before {
-    content: "Humidity: ";
-    color: #888; }
-  .weather-forecast .current .pollen:before {
-    content: "Pollen Count: ";
-    color: #888; }
-  .weather-forecast .current .pcount:before {
-    content: "Pollen ";
-    color: #888; }
-
-.weather-forecast .future {
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex; }
-  .weather-forecast .future .oneday {
-    -webkit-box-flex: 1;
-    -webkit-flex-grow: 1;
-        -ms-flex-positive: 1;
-            flex-grow: 1;
-    text-align: center; }
-    .weather-forecast .future .oneday .icon {
-      width: 64px;
-      height: 64px;
-      margin-left: auto;
-      margin-right: auto; }
-    .weather-forecast .future .oneday .temp-high, .weather-forecast .future .oneday .temp-low {
-      display: inline-block; }
-    .weather-forecast .future .oneday .temp-low {
-      color: #888; }
-
 .weather-forecast .icon {
   background-repeat: no-repeat;
   background-size: contain; }
   .weather-forecast .icon.clear-day {
     background-image: url("/images/clear.png"); }
-  .weather-forecast .icon.clear-night {
-    background-image: url("/images/clear.png"); }
-  .weather-forecast .icon.rain {
-    background-image: url("/images/rain.png"); }
-  .weather-forecast .icon.snow {
-    background-image: url("/images/snow.png"); }
-  .weather-forecast .icon.sleet {
-    background-image: url("/images/sleet.png"); }
-  .weather-forecast .icon.windy {
-    background-image: url("/images/wind.png"); }
-  .weather-forecast .icon.fog {
-    background-image: url("/images/fog.png"); }
-  .weather-forecast .icon.cloudy {
-    background-image: url("/images/cloudy.png"); }
-  .weather-forecast .icon.partly-cloudy-day {
-    background-image: url("/images/partly-cloudy.png"); }
-  .weather-forecast .icon.partly-cloudy-night {
-    background-image: url("/images/partly-cloudy.png"); }
-  .weather-forecast .icon.thunderstorms {
-    background-image: url("/images/thunderstorm.png"); }
-
-@media (max-width: 450px) {
-  .weather-forecast .date, .weather-forecast .description {
-    font-size: 0.9em; }
-  .weather-forecast .current .icon {
-    width: 96px;
-    height: 96px; }
-  .weather-forecast .current .visual {
-    font-size: 3em; }
-  .weather-forecast .future .oneday .icon {
-    width: 32px;
-    height: 32px; } }
 
 .mdl-button {
   background: transparent;
@@ -501,3 +403,6 @@ body {
   .mdl-button.mdl-button--primary.mdl-button--raised, .mdl-button--primary.mdl-button--primary.mdl-button--fab {
     color: white;
     background-color: #3f51b5; }
+.mdl-button.mdl-button--primary.mdl-button--raised[disabled] {
+  background-color: #999;
+}
