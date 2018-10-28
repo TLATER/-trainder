@@ -21,7 +21,8 @@ document.lastMessage = null;
   var app = {
     messageTemplate: document.querySelector('.messageTemplate'),
     container: document.querySelector('.main'),
-    chat: document.querySelector(".chat")
+    chat: document.querySelector(".chat"),
+    userList: document.querySelector(".userList")
   };
 
 

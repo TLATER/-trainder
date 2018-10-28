@@ -37,6 +37,10 @@ var id = 1;
    ****************************************************************************/
 
 	app.userList.displayUser = function(name, phone) {
+		$("#btnBackToUsers").click(function() {
+			app.chat.style.display = "none";	// remove chat
+			app.userList.style.display = "block";			// show users
+   });
 		var user = app.userTemplate.cloneNode(true);
 		user.classList.remove('userTemplate');
 		user.removeAttribute('hidden');
