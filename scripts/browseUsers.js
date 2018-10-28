@@ -24,17 +24,31 @@ var id = 1;
   };
 
 
+  /*****************************************************************************
+   *
+   * Event listeners for UI elements
+   *
+   ****************************************************************************/
+
+	document.getElementById('user').addEventListener('click', function() {
+		console.log("Clicked a user");
+		var userID = this.querySelector("id");
+		console.log("Requesting to talk to user " + userID);
+		window.open("index.html?id=", userID);
+	});
+
 	app.displayUser = function(data) {
-		console.log("Setting username " + data.username);
 		var user = app.userTemplate.cloneNode(true);
 		user.classList.remove('userTemplate');
 		user.removeAttribute('hidden');
 		user.querySelector('.id').textContent = id++;
 		user.querySelector('.username').textContent = data.username;
 		app.userList.appendChild(user);
-		console.log("appended " + user);
 	}
 
+	//Todo: Get users based on the train
+	const urlParams = new URLSearchParams(window.location.search);
+	console.log("Todo: Get the users on train " + urlParams.get("train"));
 	var user1 = {
 		username: "Brucie"
 	}
