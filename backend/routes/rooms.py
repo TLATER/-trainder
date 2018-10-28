@@ -70,10 +70,11 @@ def send(room_id, kind, phone):
     if kind not in ('m.text', 'm.image'):
         return flask.jsonify({"error": f"Unknown method '{kind}'"})
 
-    json = flask.request.get_json()
-    if not json:
+    if not flask.request.get_data():
+        flask.current_app.logger.error()
         return flask.jsonify({"error": "Must specify a message"})
 
+    json = flask.request.get_json()
     try:
         room = Room.select().where(Room.id == room_id).get()
     except Room.DoesNotExist:
@@ -85,6 +86,7 @@ def send(room_id, kind, phone):
         return flask.jsonify({"error": f"User '{phone}' does not exist"})
 
     if phone not in (room.user_a.phone, room.user_b.phone):
+        flask.current_app.logger.error(phone, room.user_a.phone, room.user_b.phone)
         return flask.jsonify({"error": f"User not in this room"})
 
     event = Event(content=json, kind=kind, sender=user.phone,

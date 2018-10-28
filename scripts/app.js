@@ -63,8 +63,26 @@ document.lastMessage = null;
       message.querySelector('.username').textContent = data.username;
       message.querySelector('.messageText').textContent = data.messageText;
       app.chat.appendChild(message);
+
+      $.ajax({
+        url: `${SERVER}rooms/${document.roomId}/send/m.text/${document._userData.phone}`,
+        method: "PUT",
+        dataType: "json",
+        contentType: "application/json",
+        data: `{"body": "${data.messageText}"}`
+      }).then(data => {
+        if (data.hasOwnProperty("error")) {
+          console.error(data.error);
+        } else {
+          console.info(data);
+        }
+      });
       }
   };
+
+  function parseContent(content) {
+    return JSON.parse(content.replace(/'/g, '"'));
+  }
 
   // Display the message received
   app.displayMessage = function(data) {
@@ -72,18 +90,20 @@ document.lastMessage = null;
     message.classList.remove('messageTemplate');
     message.removeAttribute('hidden');
 
-    if (data.content.msgtype == "m.text") {
+    document.lastMessage = data.id;
+
+    if (data.kind == "m.text") {
       message.querySelector('.username').textContent = data.sender;
-      message.querySelector('.messageText').textContent = data.content.body;
+      message.querySelector('.messageText').textContent = parseContent(data.content).body;
       app.chat.appendChild(message);
-    } else if (data.content.msgtype == "m.image") {
+    } else if (data.kind == "m.image") {
       // Deal with this like an image
       //Todo: Only allow this to send when it's been 5 days
       message.querySelector('.username').textContent = data.sender;
       //message.querySelector('.messageText').textContent = data.content.body;
       app.chat.appendChild(message);
     } else {
-      console.log("Don't know how to display data type " + data.content.msgtype);
+      console.log("Don't know how to display data type " + data.kind);
     }
   };
 
