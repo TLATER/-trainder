@@ -1,7 +1,10 @@
 import flask
+import flask_cors
 import logging
 
+
 app = flask.Flask(__name__)
+flask_cors.CORS(app)
 
 from . import models
 from .routes import rooms

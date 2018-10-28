@@ -1,11 +1,11 @@
-// Copyright 2016 Google Inc.
-// 
+// Copyright 2016 Google Inc.   -*- tab-width: 2; js-indent-level: 2; -*-
+//
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
 // You may obtain a copy of the License at
-// 
+//
 //      http://www.apache.org/licenses/LICENSE-2.0
-// 
+//
 // Unless required by applicable law or agreed to in writing, software
 // distributed under the License is distributed on an "AS IS" BASIS,
 // WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -24,7 +24,9 @@ var id = 1;
 		chat: document.querySelector(".chat"),
 		chatHeader: document.querySelector(".chatHeader"),
 		userID: document.querySelector(".userID"),
-		inputBox: document.querySelector(".inputBox")
+		inputBox: document.querySelector(".inputBox"),
+    roomId: null,
+    lastMessage: null
   };
 
 
@@ -34,28 +36,40 @@ var id = 1;
    *
    ****************************************************************************/
 
-	app.displayUser = function(data) {
+	app.userList.displayUser = function(name, phone) {
 		var user = app.userTemplate.cloneNode(true);
 		user.classList.remove('userTemplate');
 		user.removeAttribute('hidden');
-		user.querySelector('.id').textContent = id++;
-		user.querySelector('.username').textContent = data.username;
+		user.querySelector('.id').textContent = phone;
+		user.querySelector('.username').textContent = name;
 		user.addEventListener("click", function() {
 			console.log("Clicked a user");
 			var userID = user.querySelector(".id").textContent;
 			console.log("Requesting to talk to user ID " + userID);
-	
+
 			// Display the chat window for this user
 			app.userList.style.display = "none";	// remove users
 			app.chat.style.display = "block";			// show chat
-			// Todo: Pass through a useful user identification so we 
+			// Todo: Pass through a useful user identification so we
 			// know which chat to open
-			console.log("Requesting to chat with " 
-																	+ user.querySelector(".username").textContent);
+			console.log("Requesting to chat with "
+									+ user.querySelector(".username").textContent);
 			app.chatHeader.textContent = user.querySelector(".username").textContent;
 			app.userID.textContent = userID;	// Know which user talking to
 			app.inputBox.style.display = "flex"; // show input
-	
+
+      $.ajax({
+        url: `${SERVER}rooms/invite/${userID}/${document._userData.phone}`,
+        method: "PUT"
+      }).then(data => {
+        if (data.hasOwnProperty("error"))
+          console.error(data.error);
+        else {
+          app.roomId = data.room_id;
+          sync();
+        }
+      });
+
 		});
 		app.userList.appendChild(user);
 	}
@@ -65,13 +79,10 @@ var id = 1;
 	console.log("Todo: Get the users on train " + urlParams.get("train"));
 	var user1 = {
 		username: "Brucie"
-	}
+	};
 	var user2 = {
 		username: "Gazzo"
-	}
-	
-	app.displayUser(user1);
-	app.displayUser(user2);
+	};
 }
 
 

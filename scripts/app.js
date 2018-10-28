@@ -1,11 +1,11 @@
-// Copyright 2016 Google Inc.
-// 
+// Copyright 2016 Google Inc.   -*- tab-width: 2; js-indent-level: 2; -*-
+//
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
 // You may obtain a copy of the License at
-// 
+//
 //      http://www.apache.org/licenses/LICENSE-2.0
-// 
+//
 // Unless required by applicable law or agreed to in writing, software
 // distributed under the License is distributed on an "AS IS" BASIS,
 // WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -34,7 +34,7 @@
    *
    ****************************************************************************/
 
-  document.getElementById('btnSendMessage').addEventListener('click', function() {    
+  document.getElementById('btnSendMessage').addEventListener('click', function() {
     var typedMessage = document.getElementById('inputMessage').value;
     var messageJSON = {
       username: "Me",
@@ -96,10 +96,21 @@
 
 )();
 
+document.roomId = null;
+document.lastMessage = null;
+
 function pollForMessages(){
-  $.post('ajax/test.html', function(data) {
-    // If new message, send it
-    displayMessage(data);
-    setTimeout(pollForMessages,5000);
+  $.get({
+    url: `${SERVER}/rooms/${document.roomId}/sync/${document.lastMessage}`,
+    dataType: "json"
+  }).then(data => {
+    if (data.hasOwnProperty("error")) {
+      console.error(data.error);
+    } else {
+      for (let event of data)
+        displayMessage(event);
+
+      setTimeout(pollForMessages, 5000);
+    }
   });
 }

@@ -22,7 +22,7 @@ def list_invitations(phone):
     return flask.jsonify({"rooms": [room.id for room in invitations]})
 
 
-@rooms.route('/accept/<int:room_id>/<string:phone>')
+@rooms.route('/accept/<int:room_id>/<string:phone>', methods=['PUT'])
 def accept(room_id, phone):
     try:
         user = User.select().where(User.phone == phone).get()
@@ -53,7 +53,7 @@ def invite(other, phone):
 
     room = Room(user_a=user.id, user_b=invited.id)
     room.save()
-    return flask.jsonify("success")
+    return flask.jsonify({"room_id": room.id})
 
 
 @rooms.route('/<int:room_id>/send/<string:kind>/<string:phone>', methods=['PUT'])
@@ -85,8 +85,8 @@ def send(room_id, kind, phone):
     return flask.jsonify("success")
 
 
-@rooms.route('/<int:room_id>/sync/<int:last_message>')
-def symc(room_id, last_message):
+@rooms.route('/<int:room_id>/sync/<int:last_message>', methods=['GET'])
+def sync(room_id, last_message):
     try:
         events = (Event.select()
                   .join(Room)
