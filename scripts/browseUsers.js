@@ -65,8 +65,7 @@ var id = 1;
         if (data.hasOwnProperty("error"))
           console.error(data.error);
         else {
-          app.roomId = data.room_id;
-          sync();
+          document.roomId = data.room_id;
         }
       });
 

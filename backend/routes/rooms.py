@@ -41,6 +41,7 @@ def accept(room_id, phone):
 
 @rooms.route('/invite/<string:other>/<string:phone>', methods=['PUT'])
 def invite(other, phone):
+
     try:
         user = User.select().where(User.phone == phone).get()
     except User.DoesNotExist:
@@ -51,8 +52,16 @@ def invite(other, phone):
     except User.DoesNotExist:
         return flask.jsonify({"error": f"User '{other}' does not exist"})
 
-    room = Room(user_a=user.id, user_b=invited.id)
-    room.save()
+    room = None
+    try:
+        room = (Room.select()
+                .where(Room.user_a == user.id and Room.user_b == invited.id or
+                       Room.user_b == user.id and Room.user_a == invited.id)
+                .get())
+    except Room.DoesNotExist:
+        room = Room(user_a=user.id, user_b=invited.id)
+        room.save()
+
     return flask.jsonify({"room_id": room.id})
 
 

@@ -12,6 +12,8 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
+document.roomId = null;
+document.lastMessage = null;
 
 (function() {
   'use strict';
@@ -62,7 +64,7 @@
       message.querySelector('.messageText').textContent = data.messageText;
       app.chat.appendChild(message);
       }
-  }
+  };
 
   // Display the message received
   app.displayMessage = function(data) {
@@ -83,7 +85,7 @@
     } else {
       console.log("Don't know how to display data type " + data.content.msgtype);
     }
-  }
+  };
 
 
   /*****************************************************************************
@@ -92,25 +94,35 @@
    *
    ****************************************************************************/
 
+  function pollForMessages(){
+    if (document.roomId === null) {
+      setTimeout(pollForMessages, 500);
+      return;
+    }
+
+    let last = document.lastMessage || 0;
+
+    $.get({
+      url: `${SERVER}rooms/${document.roomId}/sync/${last}`,
+      dataType: "json"
+    }).then(data => {
+      if (data.hasOwnProperty("error")) {
+        console.error(data.error);
+      } else {
+        if (data.events.length > 0) {
+          console.info("Received new messages.");
+          console.info(data);
+        }
+
+        for (let event of data.events)
+          app.displayMessage(event);
+
+        setTimeout(pollForMessages, 500);
+      }
+    });
+  }
+
+  pollForMessages();
 }
 
 )();
-
-document.roomId = null;
-document.lastMessage = null;
-
-function pollForMessages(){
-  $.get({
-    url: `${SERVER}/rooms/${document.roomId}/sync/${document.lastMessage}`,
-    dataType: "json"
-  }).then(data => {
-    if (data.hasOwnProperty("error")) {
-      console.error(data.error);
-    } else {
-      for (let event of data)
-        displayMessage(event);
-
-      setTimeout(pollForMessages, 5000);
-    }
-  });
-}
