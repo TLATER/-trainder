@@ -32,9 +32,13 @@ document.lastMessage = null;
    ****************************************************************************/
 
   document.getElementById('btnSendPhoto').addEventListener('click', function() {
-    if (this.hasAttribute("disabled"))
+    if (this.hasAttribute("disabled")) {
       console.log("x more journeys until you can reveal your identity");
-    else 
+      var photoToast = document.getElementById("photoToast");
+      photoToast.className = "show";
+      setTimeout(function() { photoToast.className = photoToast.className.replace("show", ""); }
+        , 3000);
+    } else 
       console.log("Send a photo");
   });
 
