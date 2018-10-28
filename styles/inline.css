@@ -327,7 +327,7 @@ body {
   box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 3px 1px -2px rgba(0, 0, 0, 0.2), 0 1px 5px 0 rgba(0, 0, 0, 0.12); }
 
 .inputMessage {
-  flex-grow: 0.9;
+  flex-grow: 0.8;
 }
 
 .detailsInputMessage {
@@ -336,6 +336,13 @@ body {
 
 #btnSendMessage {
   flex-grow: 0.1;
+}
+
+#btnSendPhoto {
+  flex-grow: 0.1;
+  background-image: url(../icons/baseline_photo_camera_white_18dp.png);
+  background-repeat: no-repeat;
+  background-position: center;
 }
 
 .weather-forecast .location {
@@ -483,11 +490,14 @@ body {
     color: #3f51b5; }
     .mdl-button.mdl-button--colored:focus:not(:active) {
       background-color: rgba(0, 0, 0, 0.12); }
+  .mdl-button.mdl-button-disabled {
+    color: #888;
+  }
 
-.mdl-button--primary.mdl-button--primary {
+.mdl-button.mdl-button--primary {
   color: #3f51b5; }
-  .mdl-button--primary.mdl-button--primary .mdl-ripple {
+  .mdl-button.mdl-button--primary .mdl-ripple {
     background: white; }
-  .mdl-button--primary.mdl-button--primary.mdl-button--raised, .mdl-button--primary.mdl-button--primary.mdl-button--fab {
+  .mdl-button.mdl-button--primary.mdl-button--raised, .mdl-button--primary.mdl-button--primary.mdl-button--fab {
     color: white;
     background-color: #3f51b5; }
