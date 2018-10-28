@@ -17,14 +17,9 @@
   'use strict';
 
   var app = {
-    visibleCards: {},
-    selectedCities: [],
-    cardTemplate: document.querySelector('.cardTemplate'),
-    messageTemplate: document.querySelector('.messageTemplate'),
-    container: document.querySelector('.main'),
-    chat: document.querySelector(".chat"),
-    addDialog: document.querySelector('.dialog-container'),
-    daysOfWeek: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun']
+    inputForm: document.querySelector('.inputForm'),
+    userList: document.querySelector('.userList'),
+    chat: document.querySelector(".chat")
   };
 
 
@@ -38,8 +33,13 @@
 		var from = document.getElementById("inputFrom").value;
 		var to = document.getElementById("inputTo").value;
     if (from != "" && to != "") {
-			var train = getTrain(from, to); //todo: add the time
-			window.open("browseUsers.html?train=" + train, "_self");
+      var train = getTrain(from, to); //todo: add the time
+      
+      // Details are given, load the next page here
+			app.inputForm.style.display = "none";	// remove first form
+      app.userList.style.display = "block"; // show online users
+      app.userList.trainID = train; // Pass the train ID through
+
     } else {
 			console.log("Please enter valid from and to locations.")
 		}

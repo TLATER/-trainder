@@ -25,6 +25,7 @@
   <link rel="manifest" href="/manifest.webmanifest">
   <script src="scripts/app.js" async></script>
   <script src="scripts/browseUsers.js" async></script>
+  <script src="scripts/enterDetails.js" async></script>
 </head>
 <body>
 
@@ -33,7 +34,20 @@
   </header>
 
   <main class="main">
-    <div class="userList">
+    <!-- The first page you get to, choose journey -->
+    <div class="inputForm">
+      Where are you travelling?
+      <div class="nameInput">
+        From:<br><input class="detailsInputMessage" id="inputFrom">
+      </div>
+      <div class="nameInput">
+        To:<br><input class="detailsInputMessage" id="inputTo">
+      </div>
+      <div id="btnEnterDetails" class="mdl-button" type="submit">Send</div>
+    </div>
+
+    <!-- The list of users you can chat to -->
+    <div class="userList" style="display:none">
       <div id="user" class="user userTemplate" hidden>
         <div class="id" hidden></div>
         <div class="username"></div>
@@ -42,21 +56,22 @@
     </div>
 
 
+    <!-- The chat you have opened -->
     <div class="chat" style="display:none">
-        <div class="message messageTemplate" hidden>
-          <div class="username"></div>
-          <div class="messageText"></div>
-        </div>
-        <!-- Example messages, just for show. Remove when it works -->
-        <div class="message">
-          <div class="username">Betty</div>
-          <div class="messageText">What do you call a dino with no ears?</div>
-        </div>
-        <div class="message">
-          <div class="username">Me</div>
-          <div class="messageText">Anything you want he can't hear you!</div>
-        </div>
-        <!-- Example messages, just for show. Remove when it works -->
+      <div class="message messageTemplate" hidden>
+        <div class="username"></div>
+        <div class="messageText"></div>
+      </div>
+      <!-- Hidden example messages, just for show. Remove when it works -->
+      <div class="message" hidden>
+        <div class="username">Betty</div>
+        <div class="messageText">What do you call a dino with no ears?</div>
+      </div>
+      <div class="message" hidden>
+        <div class="username">Me</div>
+        <div class="messageText">Anything you want he can't hear you!</div>
+      </div>
+      <!-- Example messages, just for show. Remove when it works -->
     </div>
     <div class="inputBox" style="display:none">
       <input class="inputMessage" id="inputMessage">

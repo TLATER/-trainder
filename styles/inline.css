@@ -62,7 +62,7 @@ body {
 
 .header {
   width: 100%;
-  flex-grow: 0.1;
+  flex-grow: 0.05;
   color: #FFF;
   background: #3F51B5;
   font-size: 20px;

@@ -40,12 +40,15 @@ var id = 1;
 		user.querySelector('.username').textContent = data.username;
 		user.addEventListener("click", function() {
 			console.log("Clicked a user");
-			var userID = this.querySelector("id");
+			var userID = user.querySelector("id");
 			console.log("Requesting to talk to user " + userID);
 	
 			// Display the chat window for this user
 			app.userList.style.display = "none";	// remove users
 			app.chat.style.display = "block";			// show chat
+			// Todo: Pass through a useful user identification so we 
+			// know which chat to open
+			app.chat.userID = userID;	// Know which user talking to
 			app.inputBox.style.display = "flex"; // show input
 	
 		});
