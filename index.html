@@ -1,0 +1,93 @@
+<!--
+ Copyright 2016 Google Inc.
+
+ Licensed under the Apache License, Version 2.0 (the "License");
+ you may not use this file except in compliance with the License.
+ You may obtain a copy of the License at
+
+      http://www.apache.org/licenses/LICENSE-2.0
+
+ Unless required by applicable law or agreed to in writing, software
+ distributed under the License is distributed on an "AS IS" BASIS,
+ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ See the License for the specific language governing permissions and
+ limitations under the License.
+-->
+
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Commeetr</title>
+  <link rel="stylesheet" type="text/css" href="styles/inline.css">
+  <link rel="manifest" href="/manifest.webmanifest">
+  <script src="scripts/app.js" async></script>
+  <script src="scripts/browseUsers.js" async></script>
+  <script src="scripts/enterDetails.js" async></script>
+  <script src="https://code.jquery.com/jquery-3.3.1.min.js" async></script>
+</head>
+<body>
+
+  <header class="header">
+    <h1 class="header__title">Commeetr</h1>
+  </header>
+
+  <main class="main">
+    <!-- The first page you get to, choose journey -->
+      <div class="inputForm">
+      <div class="nameInput">
+          Username:<br><input class="detailsInputMessage" id="inputName">
+      </div>
+      <div class="nameInput">
+          Phone Number:<br><input class="detailsInputMessage" id="inputPhone">
+      </div>
+      Where are you travelling?
+      <div class="nameInput">
+        From:<br><input class="detailsInputMessage" id="inputFrom">
+      </div>
+      <div class="nameInput">
+        To:<br><input class="detailsInputMessage" id="inputTo">
+      </div>
+      <div id="btnEnterDetails" class="mdl-button" type="submit">Send</div>
+    </div>
+
+    <!-- The list of users you can chat to -->
+    <div class="userList" style="display:none">
+      <div id="user" class="user userTemplate" hidden>
+        <div class="id" hidden></div>
+        <div class="username"></div>
+        <div class="lastMessage">...last message...</div>
+      </div>
+    </div>
+
+
+    <!-- The chat you have opened -->
+    <div class="chat" style="display:none">
+      <div class="chatHeader"></div>
+      <div class="userID" hidden></div>
+      <div class="message messageTemplate" hidden>
+        <div class="username"></div>
+        <div class="messageText"></div>
+      </div>
+      <!-- Hidden example messages, just for show. Remove when it works -->
+      <div class="message" hidden>
+        <div class="username">Betty</div>
+        <div class="messageText">What do you call a dino with no ears?</div>
+      </div>
+      <div class="message" hidden>
+        <div class="username">Me</div>
+        <div class="messageText">Anything you want he can't hear you!</div>
+      </div>
+      <!-- Example messages, just for show. Remove when it works -->
+    </div>
+    <div class="inputBox" style="display:none">
+      <input class="inputMessage" id="inputMessage">
+      <div id="btnSendMessage" class="mdl-button">Send</div>
+    </div>
+  </main>
+
+
+</body>
+</html>
