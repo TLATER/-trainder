@@ -227,6 +227,13 @@ body {
   padding: 8px !important;
   float: right; }
 
+.chatHeader {
+  background: #3F51B5;
+  color: #FFF;
+  font-weight: bold;
+  padding: 6px;
+}
+
 .inputForm {
   display: flex;
   justify-content: space-evenly;
@@ -251,7 +258,7 @@ body {
   overflow-x: hidden;
   overflow-y: scroll;
   flex-grow: 0.9;
-  padding: 16px;
+  padding: 0px, 16px, 16px, 16px;
   position: relative;
   box-sizing: border-box;
   background: #fff;

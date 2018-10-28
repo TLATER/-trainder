@@ -22,6 +22,8 @@ var id = 1;
     container: document.querySelector('.main'),
 		userList: document.querySelector(".userList"),
 		chat: document.querySelector(".chat"),
+		chatHeader: document.querySelector(".chatHeader"),
+		userID: document.querySelector(".userID"),
 		inputBox: document.querySelector(".inputBox")
   };
 
@@ -40,15 +42,18 @@ var id = 1;
 		user.querySelector('.username').textContent = data.username;
 		user.addEventListener("click", function() {
 			console.log("Clicked a user");
-			var userID = user.querySelector("id");
-			console.log("Requesting to talk to user " + userID);
+			var userID = user.querySelector(".id").textContent;
+			console.log("Requesting to talk to user ID " + userID);
 	
 			// Display the chat window for this user
 			app.userList.style.display = "none";	// remove users
 			app.chat.style.display = "block";			// show chat
 			// Todo: Pass through a useful user identification so we 
 			// know which chat to open
-			app.chat.userID = userID;	// Know which user talking to
+			console.log("Requesting to chat with " 
+																	+ user.querySelector(".username").textContent);
+			app.chatHeader.textContent = user.querySelector(".username").textContent;
+			app.userID.textContent = userID;	// Know which user talking to
 			app.inputBox.style.display = "flex"; // show input
 	
 		});
