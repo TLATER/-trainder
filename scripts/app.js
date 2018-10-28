@@ -37,7 +37,7 @@
   document.getElementById('btnSendMessage').addEventListener('click', function() {    
     var typedMessage = document.getElementById('inputMessage').value;
     var messageJSON = {
-      username: "Loz\'n",
+      username: "Me",
       messageText: typedMessage
     };
 
@@ -76,6 +76,7 @@
       app.chat.appendChild(message);
     } else if (data.content.msgtype == "m.image") {
       // Deal with this like an image
+      //Todo: Only allow this to send when it's been 5 days
       message.querySelector('.username').textContent = data.sender;
       //message.querySelector('.messageText').textContent = data.content.body;
       app.chat.appendChild(message);
